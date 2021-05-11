@@ -1,7 +1,10 @@
 .row{
   margin-top: 1rem;
+  width: 100%;
+
 }
-.uil-bill{
-  font-weight:5rem;
-  font-size: large;
+
+.btn{
+  font-weight: 4rem;
+
 }
