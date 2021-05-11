@@ -1,6 +1,9 @@
 
 <head>
-  <meta charset='utf-8'>
+
+
+
+    <meta charset='utf-8'>
   <meta http-equiv='X-UA-Compatible' content='IE=edge'>
   <title>Page Title</title>
   <meta name='viewport' content='width=device-width, initial-scale=1'>
@@ -8,7 +11,32 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
 </head>
 <body>
+
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+    <select [(ngModel)]="keyword">
+      <option *ngFor="let item of keywords" [value]="item">{{item}}</option>
+    </select>
+
+    <div class="autocomplete">
+      <ng-autocomplete
+        [data]="data | async"
+        [searchKeyword]="keyword"
+        [itemTemplate]="itemTemplate"
+        [notFoundTemplate]="notFoundTemplate"
+        placeholder="Busca un empleado..."
+      >
+      </ng-autocomplete>
+
+      <ng-template #itemTemplate let-item>
+        <a [innerHTML]="item.name"></a>
+        </ng-template>
+
+        <ng-template #notFoundTemplate let-notFound>
+        <div [innerHTML]="notFound"></div>
+        </ng-template>
+    </div>
+
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -24,6 +52,10 @@
           <a class="nav-link" href="#">Home 3</a>
         </li>
       </ul>
+
+
+
     </div>
+
   </nav>
 </body>

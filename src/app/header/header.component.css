@@ -1,0 +1,25 @@
+.navbar{
+  box-shadow:
+  0 11.9px 9.3px rgba(0, 0, 0, 0.267),
+  0 40px 31.3px rgba(0, 0, 0, 0.393),
+  0 179px 140px rgba(0, 0, 0, 0.66)
+;
+
+}
+
+.autocomplete{
+  width: 10%;
+  height: 30px;
+  display: table;
+  margin: 0 .5rem;
+  text-align: left;
+}
+
+select{
+  font-size: 1rem;
+  color:#000;
+  width: 5%;
+  height: 40px;
+  text-transform: capitalize;
+}
+

@@ -1,26 +1,26 @@
-<p>employees works!</p>
-<div *ngFor="let employee of employees" class="col-md-12 col-xl-3">
+<link rel="stylesheet" href="https://unicons.iconscout.com/release/v3.0.6/css/line.css">
+<div class="row">
+<div *ngFor="let employee of employees" class="col-md-6 col-xl-3">
   <div class="card m-b-30">
      <div class="card-body row">
-         <div class="col-12">
-           <a href=""><img src="{{employee?.imageUrl}}" alt="" class="img-fluid rounded-circle w-60"></a>
-        </div>
-        <div class="col-12 card-title align-self-center mb-0">
-           <h5>{{employee?.name}}</h5>
-           <h6 class="m-0">{{employee?.jobPosition}}</h6>
+        <div class="col-24 card-title align-self-center mb-0">
+           <h5>{{employee?.name}}{{employee.secondName}}</h5>
+           <h6 class="mb-2">{{employee?.jobPosition}}</h6>
            <p><small>{{employee?.id}}</small></p>
 
         </div>
      </div>
      <ul class="list-group list-group-flush">
         <li class="list-group-item"><i class="fa fa-envelope float-right"></i>{{employee?.email}}</li>
-        <li class="list-group-item"><i class="fa fa-phone float-right"></i>Phone : {{employee?.phone}}</li>
+        <li class="list-group-item"><i class="fa fa-phone float-right"></i>Nº Tel. : {{employee?.phone}}</li>
      </ul>
      <div class="card-body">
-        <div class="float-right btn-group btn-group-sm">
+        <div class="float-right btn-group btn-group-md">
+          <a (click)="onPayrollModal(employee, 'payroll')" class="btn btn-primary tooltips" data-placement="top" data-original-title="papyroll"><i class="uil uil-bill"></i>> </a>
            <a (click)="onOpenModal(employee, 'edit')" class="btn btn-primary tooltips" data-placement="top" data-original-title="Edit"><i class="fa fa-pencil"></i> </a>
            <a (click)="onOpenModal(employee, 'delete')" class="btn btn-secondary tooltips" data-placement="top" data-original-title="Delete"><i class="fa fa-times"></i></a>
         </div>
       </div>
     </div>
   </div>
+</div>
