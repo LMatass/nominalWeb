@@ -1,13 +1,12 @@
 <link rel="stylesheet" href="https://unicons.iconscout.com/release/v3.0.6/css/line.css">
 <div class="row">
-<div *ngFor="let employee of employees" class="employeeTable col-md-4 row-xl-3 col-xl-3">
+<div *ngFor="let employee of employees" class="col-md-4 row-xl-4 col-xl-3">
   <div class="card m-b-30">
      <div class="card-body row">
         <div class="col-24 card-title align-self-center mb-0">
-           <h5>{{employee?.name}}{{employee?.secondName}}</h5>
+           <h5 class="name">{{employee?.name}} {{employee.secondName}}</h5>
            <h6 class="mb-2">{{employee?.jobPosition}}</h6>
-           <p><small>ID: {{employee?.id}}</small></p>
-
+           <p><small>{{employee?.id}}</small></p>
         </div>
      </div>
      <ul class="list-group list-group-flush">
@@ -15,11 +14,6 @@
         <li class="list-group-item"><i class="fa fa-phone float-right"></i>Nº Tel. : {{employee?.phone}}</li>
      </ul>
      <div class="card-body">
-        <div class="float-right btn-group btn-group-md">
-          <a (click)="onPayrollModal(employee, 'payroll')" class="btn btn-primary tooltips" data-placement="top" data-original-title="papyroll"><i class="uil uil-bill"></i>> </a>
-           <a (click)="onOpenModal(employee, 'edit')" class="btn btn-primary tooltips" data-placement="top" data-original-title="Edit"><i class="fa fa-pencil"></i> </a>
-           <a (click)="onOpenModal(employee, 'delete')" class="btn btn-secondary tooltips" data-placement="top" data-original-title="Delete"><i class="fa fa-times"></i></a>
-        </div>
       </div>
     </div>
   </div>

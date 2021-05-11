@@ -1,16 +1,15 @@
+
 <head>
 
 
 
-  <meta charset='utf-8'>
+    <meta charset='utf-8'>
   <meta http-equiv='X-UA-Compatible' content='IE=edge'>
   <title>Page Title</title>
   <meta name='viewport' content='width=device-width, initial-scale=1'>
   <link href="app.component.css" rel="stylessheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
 </head>
-
 <body>
 
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -20,32 +19,25 @@
     </select>
 
     <div class="autocomplete">
-      <ng-autocomplete [data]="data | async" [searchKeyword]="keyword" [itemTemplate]="itemTemplate"
-        [notFoundTemplate]="notFoundTemplate" placeholder="Busca un empleado...">
+      <ng-autocomplete
+        [data]="data | async"
+        [searchKeyword]="keyword"
+        [itemTemplate]="itemTemplate"
+        [notFoundTemplate]="notFoundTemplate"
+        placeholder="Busca un empleado..."
+      >
       </ng-autocomplete>
 
       <ng-template #itemTemplate let-item>
         <a [innerHTML]="item.name"></a>
-      </ng-template>
+        </ng-template>
 
-      <ng-template #notFoundTemplate let-notFound>
+        <ng-template #notFoundTemplate let-notFound>
         <div [innerHTML]="notFound"></div>
-      </ng-template>
+        </ng-template>
     </div>
-
-
     <div class="collapse navbar-collapse justify-content-center text-center" id="navbarNav">
-
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-
-      <span class="navbar-toggler-icon"></span>
-
-    </button>
-      
-      <h3>NOMINAL</h3>
-
-    </div>
-
+    <a class="nav-link" routerLink="home">NOMINAL</a>
+  </div>
   </nav>
 </body>
