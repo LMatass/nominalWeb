@@ -4,11 +4,10 @@
   0 40px 31.3px rgba(0, 0, 0, 0.393),
   0 179px 140px rgba(0, 0, 0, 0.66)
 ;
-
 }
 
 .autocomplete{
-  width: 10%;
+  width: 15%;
   height: 30px;
   display: table;
   margin: 0 .5rem;
@@ -23,3 +22,11 @@ select{
   text-transform: capitalize;
 }
 
+h3 {
+  color: orangered;
+  margin-left: -28%;
+}
+
+#navbarNav{
+  text-align: center;
+}

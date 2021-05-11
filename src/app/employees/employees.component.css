@@ -1,10 +1,16 @@
 .row{
   margin-top: 1rem;
   width: 100%;
+  margin-left: 0%;
+  height: 230px;
 
 }
 
-.btn{
-  font-weight: 4rem;
+.uil-bill{
+  font-weight:5rem;
+  font-size: large;
+}
 
+.name{
+  text-transform: capitalize;
 }
