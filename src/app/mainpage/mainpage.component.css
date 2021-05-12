@@ -1,0 +1,27 @@
+ng-sidebar-container{
+  height: 100vh;
+  width: 100%;
+}
+
+::ng-deep .ng-sidebar {
+
+  background-color: #494949;
+  width: 250px;
+  padding: 2em 3em;
+  box-shadow: 0 0 2.5em rgb(14, 10, 10)
+}
+.wrapper{
+  display: flex;
+}
+
+.header{
+  width: 100%;
+}
+
+.uil{
+  color: white;
+
+  width: 5%;
+}
+
+

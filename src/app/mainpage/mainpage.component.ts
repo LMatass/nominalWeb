@@ -1,5 +1,6 @@
+import { EmployeeService } from './../employees/employee.service';
 import { Component, OnInit } from '@angular/core';
-
+import { Employee } from '../employees/models/employee';
 @Component({
   selector: 'app-mainpage',
   templateUrl: './mainpage.component.html',
@@ -7,9 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainpageComponent implements OnInit {
 
-  constructor() { }
+  ejemplo: true;
+  public employees: Employee[];
+  opened = false;
 
-  ngOnInit(): void {
+  // opens-closes sidebar
+  toggleSidebar(){
+    this.opened = !this.opened;
+  }
+
+
+  constructor(private employeeService: EmployeeService){}
+
+  ngOnInit() {
+    this.employeeService.getEmployees();
+
   }
 
 }
+

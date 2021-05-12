@@ -1,7 +1,7 @@
 import { EmployeeService } from './employee.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Employee } from './employee';
+import { Employee } from './models/employee';
 @Component({
   selector: 'app-employees',
   templateUrl: './employees.component.html',
@@ -17,6 +17,8 @@ export class EmployeesComponent implements OnInit {
     ngOnInit() {
       this.getEmployees();
     }
+
+    // calls employee get all employees service
   public getEmployees(): void {
     this.employeeService.getEmployees().subscribe(
       (response: Employee[]) => {

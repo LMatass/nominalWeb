@@ -1,18 +1,9 @@
-.container{
-}
-
-.formsContainer{
-  margin-top: 3rem;
-  position: relative;
-  width: 100%;
-}
-
 .autocomplete{
-  width: 10%;
+  width: 20%;
   height: 30px;
   display: table;
   margin: 0 .5rem;
-  text-align: left;
+  text-align: center;
 }
 
 select{
@@ -26,3 +17,4 @@ select{
   margin-top: 1rem;
   justify-content: center;
 }
+

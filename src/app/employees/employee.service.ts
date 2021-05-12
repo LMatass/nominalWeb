@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Employee } from './employee';
+import { Employee } from './models/employee';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -16,9 +16,19 @@ export class EmployeeService {
 
   constructor(private http: HttpClient) { }
 
+  public selectEvent(employee){
+    console.log(employee);
+  }
+
+  // gets employees from back end service
   public getEmployees(): Observable<Employee[]>{
     this.example$ =  this.http.get<Employee[]>(`${this.apiServerUrl}/employees/all`);
     return this.example$;
+  }
+
+  // finds an employee from given id
+  public findEmployee(employeeId: number): Observable<Employee>{
+    return this.http.get<Employee>(`${this.apiServerUrl}/employees/find/${employeeId}`);
   }
 
   public addEmployee(employee: Employee): Observable<Employee>{

@@ -8,11 +8,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { MainpageComponent } from './mainpage/mainpage.component';
-import {MatSidenavModule} from '@angular/material/sidenav';
-import {MatListModule} from '@angular/material/list';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import { MatIconModule } from '@angular/material/icon';
 import { PayrollComponent } from './payroll/payroll.component';
+import { SidebarModule } from 'ng-sidebar';
+import { SearchBarComponent } from './search-bar/search-bar.component';
+import { EmployeesPageComponent } from './employees-page/employees-page.component';
+import { HomepageComponent } from './homepage/homepage.component';
+
 
 @NgModule({
   declarations: [
@@ -21,6 +22,9 @@ import { PayrollComponent } from './payroll/payroll.component';
     MainpageComponent,
     EmployeesComponent,
     PayrollComponent,
+    SearchBarComponent,
+    EmployeesPageComponent,
+    HomepageComponent,
 
     ],
   imports: [
@@ -29,6 +33,11 @@ import { PayrollComponent } from './payroll/payroll.component';
     HttpClientModule,
     AutocompleteLibModule,
     FormsModule,
+    SidebarModule.forRoot(),
+
+
+
+
 
 
 

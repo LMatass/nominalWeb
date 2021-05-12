@@ -1,8 +1,9 @@
 import { EmployeeService } from './../employees/employee.service';
 import { Component, OnInit } from '@angular/core';
-import { Employee } from './../employees/employee';
+import { Employee } from '../employees/models/employee';
 import { Observable } from 'rxjs';
 import {AutocompleteLibModule} from 'angular-ng-autocomplete';
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -10,20 +11,14 @@ import {AutocompleteLibModule} from 'angular-ng-autocomplete';
   providers: [EmployeeService]
 })
 export class HeaderComponent implements OnInit {
-  public keyword = 'name';
-  public data: Observable<Employee[]>;
-  public keywords = ['name', 'dni' , 'id'];
 
-  constructor(private employeeService: EmployeeService) {
+  constructor() {
 
   }
 
   ngOnInit(): void {
-    this.getEmployees();
+
   }
 
 
-  getEmployees(): void{
-    this.data = this.employeeService.getEmployees();
-  }
 }
