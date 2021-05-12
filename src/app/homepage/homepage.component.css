@@ -1,0 +1,9 @@
+.home {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    position:absolute !important;
+
+}
+body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
