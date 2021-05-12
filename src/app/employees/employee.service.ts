@@ -16,10 +16,6 @@ export class EmployeeService {
 
   constructor(private http: HttpClient) { }
 
-  public selectEvent(employee){
-    console.log(employee);
-  }
-
   // gets employees from back end service
   public getEmployees(): Observable<Employee[]>{
     this.example$ =  this.http.get<Employee[]>(`${this.apiServerUrl}/employees/all`);

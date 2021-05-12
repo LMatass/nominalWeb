@@ -3,7 +3,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {AutocompleteLibModule} from 'angular-ng-autocomplete';
-import {FormsModule} from '@angular/forms';
+import {FormsModule,  ReactiveFormsModule} from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -35,6 +35,7 @@ import { DatePipe } from '@angular/common';
     AutocompleteLibModule,
     FormsModule,
     SidebarModule.forRoot(),
+    ReactiveFormsModule,
 
 
 

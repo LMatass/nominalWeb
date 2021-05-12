@@ -39,15 +39,45 @@ input {
 
 label {
   display: inline-block;
-  width: 10em;
+  width: 15em;
   margin-right: 10rem;
   padding-top: 1.5em;
+
 }
 .extra{
   width: 17rem;
   margin-right: auto;
 }
 
+
+.inputDate{
+
+  display: flex;
+  width: 50%;
+  height: 40%;
+}
+
+
+
+
+.liquidationDate{
+
+
+  display: flex;
+  margin-top: 2rem;
+  width: 100%;
+
+}
+
+.days{
+  width: 100%;
+}
+
+.period{
+  margin-top: 1.5rem;
+  margin-right: 1rem;
+  text-align: center;
+}
 /* input {
   display: inline-block;
   width: 6em;

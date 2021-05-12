@@ -8,4 +8,5 @@ export class Employee {
   retributiveGroup: string;
   establishmentCategory: string;
   hireDate: 'yyyy-MM-dd';
+  baseSalary: number;
 }

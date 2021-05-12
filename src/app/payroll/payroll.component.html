@@ -15,42 +15,65 @@
 
     <form #f="ngForm"  novalidate>
       <label>Nombre
-        <input name="name" ngModel='{{employee?.name}}'>
+        <input [disabled]="true" name="name" ngModel='{{employee?.name}}'>
       </label>
 
       <label for="secondName">Apellido
-      <input name="secondName" ngModel={{employee?.secondName}}>
+      <input [disabled]="true" name="secondName" ngModel={{employee?.secondName}}>
       </label>
 
-      <label for="dni">Dni
-      <input name="dni" ngModel={{employee?.dni}}>
+      <label for="dni">Dni<br>
+      <input [disabled]="true" name="dni" ngModel={{employee?.dni}}>
       </label>
 
       <label for="id">Id trabajador
-      <input name="id" ngModel={{employee?.id}}>
+      <input [disabled]="true" name="id" ngModel={{employee?.id}}>
       </label>
 
       <label for="naf">Nº Afiliación SS
-      <input name="naf" ngModel={{employee?.naf}}>
+      <input [disabled]="true" name="naf" ngModel={{employee?.naf}}>
       </label>
 
       <label for="jobPosition">Puesto trabajo:
-      <input class="extra" name="jobPosition" ngModel={{employee?.jobPosition}}>
+      <input [disabled]="true" class="extra" name="jobPosition" ngModel={{employee?.jobPosition}}>
       </label>
 
       <label for="retributiveGroup">Nivel retributivo:
-      <input name="retributiveGroup" ngModel={{employee?.retributiveGroup}}>
+      <input [disabled]="true"  name="retributiveGroup" ngModel={{employee?.retributiveGroup}}>
       </label>
 
       <label for="establishmentCategory">Categoría del establecimiento:
-      <input name="establishmentCategory" ngModel={{employee?.establishmentCategory}}>
+      <input [disabled]="true"  name="establishmentCategory" ngModel={{employee?.establishmentCategory}}>
       </label>
 
       <label for="hireDate">Fecha de alta en la empresa
-      <input name="hireDate" ngModel={{employee?.hireDate}}>
+      <input [disabled]="true" name="hireDate"  class="inputDate" ngModel={{employee?.hireDate}}>
       </label>
 
+      <div class="liquidationDate ">
+        <span class="period">
+          Periodo liquidación
+        </span>
+        <label for="payrollDate" class="inputDate">
+        del:
+      <input type="date"  [(ngModel)]="startDate " class="inputDate mx-4">
+        al:
+        <input type="date" (input)="calculateDateDiff()"  [(ngModel)]="endDate" class="inputDate mx-4" >
+        <span class="days">
+          Total días: {{dateDiff}}
+        </span>
+      </label>
+      </div>
+
+      <div class="devengos">
+        <span>
+          Salario base: {{employee?.baseSalary}}
+        </span>
+      </div>
+
+
       <button  class="btn btn-outline-secondary" >Calcular</button>
+
     </form>
   </div>
 
