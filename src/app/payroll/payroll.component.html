@@ -4,21 +4,57 @@
 <div class="container">
 
 
-<app-search-bar></app-search-bar>
+<app-search-bar (employeeEvent)="receiveEmployee($event)"></app-search-bar>
+
 
 <div class="formsContainer">
 
-<form #f="ngForm"  novalidate>
-  <input name="first" ngModel required #first="ngModel">
-  <input name="last" ngModel>
-  <button>Submit</button>
-</form>
+  <div class="employeeForm">
 
-<p>First name value: {{ first.value }}</p>
-<p>First name valid: {{ first.valid }}</p>
-<p>Form value: {{ f.value | json }}</p>
-<p>Form valid: {{ f.valid }}</p>
 
-</div>
+
+    <form #f="ngForm"  novalidate>
+      <label>Nombre
+        <input name="name" ngModel='{{employee?.name}}'>
+      </label>
+
+      <label for="secondName">Apellido
+      <input name="secondName" ngModel={{employee?.secondName}}>
+      </label>
+
+      <label for="dni">Dni
+      <input name="dni" ngModel={{employee?.dni}}>
+      </label>
+
+      <label for="id">Id trabajador
+      <input name="id" ngModel={{employee?.id}}>
+      </label>
+
+      <label for="naf">Nº Afiliación SS
+      <input name="naf" ngModel={{employee?.naf}}>
+      </label>
+
+      <label for="jobPosition">Puesto trabajo:
+      <input class="extra" name="jobPosition" ngModel={{employee?.jobPosition}}>
+      </label>
+
+      <label for="retributiveGroup">Nivel retributivo:
+      <input name="retributiveGroup" ngModel={{employee?.retributiveGroup}}>
+      </label>
+
+      <label for="establishmentCategory">Categoría del establecimiento:
+      <input name="establishmentCategory" ngModel={{employee?.establishmentCategory}}>
+      </label>
+
+      <label for="hireDate">Fecha de alta en la empresa
+      <input name="hireDate" ngModel={{employee?.hireDate}}>
+      </label>
+
+      <button  class="btn btn-outline-secondary" >Calcular</button>
+    </form>
+  </div>
+
+
+  </div>
 
 </div>

@@ -13,11 +13,13 @@
 
 
 <div class="autocomplete">
+
   <ng-autocomplete
     [data]="data | async"
-    [searchKeyword]="keyword"
+    [searchKeyword]=keyword
     (selected)='selectEvent($event)'
     [itemTemplate]="itemTemplate"
+
 
     placeholder="Busca un empleado..."
   >

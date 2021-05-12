@@ -18,7 +18,6 @@ export class PayrollComponent implements OnInit {
 
   @Input() employee: Employee;
   // tslint:disable-next-line: no-input-rename
-  @Input('master') masterName: string;
 
   constructor(private employeeService: EmployeeService) {
 
@@ -32,7 +31,11 @@ export class PayrollComponent implements OnInit {
     this.getEmployees();
   }
 
+  receiveEmployee($event) {
 
+    this.employee = $event;
+  }
+  
   getEmployees(): void{
     this.data = this.employeeService.getEmployees();
   }

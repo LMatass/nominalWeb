@@ -13,6 +13,7 @@ import { SidebarModule } from 'ng-sidebar';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { EmployeesPageComponent } from './employees-page/employees-page.component';
 import { HomepageComponent } from './homepage/homepage.component';
+import { DatePipe } from '@angular/common';
 
 
 @NgModule({
@@ -42,7 +43,7 @@ import { HomepageComponent } from './homepage/homepage.component';
 
 
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,7 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Employee } from '../employees/models/employee';
 import { EmployeeService } from './../employees/employee.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-search-bar',
@@ -11,20 +12,24 @@ import { EmployeeService } from './../employees/employee.service';
 export class SearchBarComponent implements OnInit {
   public keyword = 'name';
   public data: Observable<Employee[]>;
-  public keywords = ['name', 'dni' , 'id'];
+  public keywords = ['name', 'dni'];
 
-  @Input() employee: Employee;
-  // tslint:disable-next-line: no-input-rename
-  @Input('master') masterName: string;
+  @Output() employeeEvent = new EventEmitter<Employee>();
 
-  constructor(private employeeService: EmployeeService) {
+
+  employee: Employee;
+  constructor(private employeeService: EmployeeService, public datepipe: DatePipe) {
 
   }
+
+
+  // emits the selected employee to the payroll parent component
   public selectEvent(employee){
-    console.log(employee);
+    employee.hireDate = this.datepipe.transform(employee.hireDate, 'dd-MM-yyyy');
+    this.employeeEvent.emit(employee);
   }
 
-  //Gets all employees from service
+  // Gets all employees from service
   ngOnInit(): void {
     this.getEmployees();
   }
