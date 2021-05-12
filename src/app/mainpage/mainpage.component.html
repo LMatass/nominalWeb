@@ -4,20 +4,22 @@
 [closeOnClickOutside]="true"
 >
 
- <button (click)="toggleSidebar()">Atrás</button>
+ 
  <ul class="menu">
   <li><a routerLink="/home">Home</a></li>
   <li><a routerLink="/employeespage">Manage employees</a></li>
-  <li><a routerLink="/payroll">Payrolls</a></li>
-
-
+  <li><a routerLink="/payroll">Payrolls</a></li><br>
+  
+  <button class="btn btn-light" (click)="toggleSidebar()">
+    &laquo; Go back
+  </button>
  </ul>
 </ng-sidebar>
 
 <!-- renders button to toggle sidebar and the web header inside the same div-->
 <div ng-sidebar-content >
-  <div class="wrapper  ">
-    <button class="uil uil-bars bg-dark " (click)="toggleSidebar()">
+  <div class="wrapper">
+    <button class="uil uil-bars bg-dark dropdown-toggle" (click)="toggleSidebar()">
     </button>
   <div class="header">
     <app-header></app-header>
@@ -32,4 +34,6 @@
 </div>
 
 </ng-sidebar-container>
+
+
 
