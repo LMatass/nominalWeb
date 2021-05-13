@@ -40,6 +40,7 @@ export class PayrollComponent implements OnInit {
   public indemnization2 = 0;
   public indemnization3 = 0;
   public totalIndemnizations = 0;
+  
   public complement1 = 0;
   public complement2 = 0;
   public complement3 = 0;
@@ -61,6 +62,8 @@ export class PayrollComponent implements OnInit {
   // tslint:disable-next-line: no-input-rename
 
   @Input() company: Company;
+
+  private payroll: Payroll;
 
   constructor(private employeeService: EmployeeService) {
 

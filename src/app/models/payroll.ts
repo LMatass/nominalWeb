@@ -6,7 +6,7 @@ export class Payroll
     dateDiff: number;
 
     /**
-     * Company
+     * Company 
      */
 
      companyName: string;
@@ -16,42 +16,64 @@ export class Payroll
      /**
       * Employee
       */
-     employeeName: string;
-     NIF: string;
-     NAF: string;
+     name: string;
+     nif: string;
+     naf: string;
+     jobPosition: string;
      retributiveGroup: string;
-     establishmentCategory: number;
 
      /**
-      * Liquidation period
+      * Deventions
       */
      baseSalary: number;
-     totalIndemnitzacionts: number;
-     majorForceExtraHours: number;
-     otherExtraHours: number;
-     complementaryHours: number;
-     extraordinaryGratifications: number;
-     especieSalary: number;
+     complement1Name: string;
+     complement1Import: number;
+     complement2Name: string;
+     complement2Import: string;
+     complement3Name: string;
+     complement3Import: number;
+     majorForceExtraHoursImport: number;
+     otherExtraHoursImport: number;
+     complementaryHoursImport: number;
+     extraordinaryGratificationsImport: number;
+     especieSalaryImport: number;
+     totalDeventions: number;
+
 
      // non salarial
-     totalIndemnitzations: number;
+     indemnization1Name: string;
+     indemnization1Import: number;
+     indemnization2Name: string;
+     indemnization2Import: string;
+     indemnization3Name: string;
+     indemnization3Import: number;
      SSprestationsOrIndemnizations: number;
      otherIndemnizations: number;
      otherSalaryPerceptions: number;
+     totalNonSalarialPerceptions: number;
 
      /**
       * Dedductions
       */
      // % dedductions
-     commonContingencies: number;
-     unemployement: number;
-     professionalFormation: number;
-     majorForceExtraHoursDeductions: number;
-     otherExtraHoursDeductions: number;
-     irpf: number;
+     commonContingenciesPercent = 4.70;
+     unemployementPercent = 1.55;
+     professionalFormationPercent = 0.10;
+     majorForceExtraHoursPercent = 2;
+     otherExtraHoursPercent = 4.70;
+     irpfPercent: number;
+
+     // result
+     commonContingenciesDeduction: number;
+     unemployementDeduction: number;
+     professionalFormationDeduction: number;
+     majorForceExtraHoursDeduction: number;
+     otherExtraHoursDeduction: number;
+     totalAportations: number;
+     irpfDeduction: number;
+
 
      // non %
-     totalAportations: number;
      anticipations: number;
      especieProductsValue: number;
      otherDeductions: number;
