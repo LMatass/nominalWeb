@@ -23,12 +23,13 @@ export class PayrollComponent implements OnInit {
   public endDate: Date;
   public dateDiff: number;
   public totalDeventions = 0;
-  public commonContingencies = this.totalDeventions*4.70/100;
-  public unemployement = this.totalDeventions*1.55/100;
-  public professionalformation = this.totalDeventions*0.10/100;
-  public majorForceHoursDeduction = this.totalDeventions*2/100;
-  public otherExtraHoursDeduction = this.totalDeventions*4.7/100;
-  public totalAportations = this.commonContingencies + this.unemployement + this.professionalformation + this.majorForceHoursDeduction + this.otherExtraHoursDeduction;
+  public commonContingencies = this.totalDeventions * 4.70 / 100;
+  public unemployement = this.totalDeventions * 1.55 / 100;
+  public professionalformation = this.totalDeventions * 0.10 / 100;
+  public majorForceHoursDeduction = this.totalDeventions * 2 / 100;
+  public otherExtraHoursDeduction = this.totalDeventions * 4.7 / 100;
+  public totalAportations = this.commonContingencies + this.unemployement
+  + this.professionalformation + this.majorForceHoursDeduction + this.otherExtraHoursDeduction;
   public irpf = 0;
   public irpfDeduction = 0;
   public anticipation = 0;
@@ -93,10 +94,12 @@ export class PayrollComponent implements OnInit {
     this.dateDiff =  time / (1000 * 3600 * 24); // Difference in Days
   }
 
+  // tslint:disable-next-line: typedef
   public setIrpfDeduction(){
-    this.irpfDeduction = this.totalDeventions * this.irpf/100;
+    this.irpfDeduction = this.totalDeventions * this.irpf / 100;
   }
 
+  // tslint:disable-next-line: typedef
   public calculateDeductions(){
     this.totalDeductions = this.totalAportations + this.irpfDeduction + this.anticipation + this.especieSalary
     + this.otherDeductions;
@@ -105,36 +108,45 @@ export class PayrollComponent implements OnInit {
   }
 
 
+  // tslint:disable-next-line: typedef
   calculateTotalIndemnizations(){
-    let total = (this.indemnization1 +  this.indemnization2 + this.indemnization3 + this.otherSalaryPerceptions);
+    const total = (this.indemnization1 +  this.indemnization2 + this.indemnization3 + this.otherSalaryPerceptions);
     this.totalIndemnizations = total;
     return total;
   }
 
 
 
-  calculateTotalDeventions() {
-    this.commonContingencies = this.totalDeventions*4.70/100;
-    this.unemployement = this.totalDeventions*1.55/100;
-    this.professionalformation = this.totalDeventions*0.10/100;
-    this.majorForceHoursDeduction = this.totalDeventions*2/100;
-    this.otherExtraHoursDeduction = this.totalDeventions*4.7/100;
-
-    this.totalDeventions = this.employee?.baseSalary + this.complement1 + this.complement2 + this.complement3 + this.majorForceExtraHours +
+  // tslint:disable-next-line: typedef
+  calculateTotalDeventions(): number {
+    if ( !this.employee ){
+      return 0;
+    }
+    return this.employee?.baseSalary + this.totalComplements() + this.majorForceExtraHours +
      this.otherExtraHours + this.complementaryHours + this.extraordinaryGratifications + this.especieSalary;
-     return this.totalDeventions;
+
   }
 
 
+  // tslint:disable-next-line: typedef
   calculateTotalNonSalarialPerceptions() {
-    return this.calculateTotalIndemnizations() + this.SSprestationsOrIndemnizations + this.otherIndemnizations + this.otherSalaryPerceptions;
+    return this.calculateTotalIndemnizations() + this.SSprestationsOrIndemnizations +
+    this.otherIndemnizations + this.otherSalaryPerceptions;
   }
 
+  // tslint:disable-next-line: typedef
   calculateSalaries(){
     this.bruteSalary =  this.employee?.baseSalary +  this.calculateTotalDeventions() + this.calculateTotalNonSalarialPerceptions();
 
-    this.netSalary =  (this.employee?.baseSalary + this.calculateTotalDeventions() - this.calculateDeductions()) + ( this.calculateTotalNonSalarialPerceptions() * this.irpf/100);
+    this.netSalary =  (this.employee?.baseSalary + this.calculateTotalDeventions() -
+     this.calculateDeductions()) + ( this.calculateTotalNonSalarialPerceptions() * this.irpf / 100);
   }
 
+  calculateBruteSalary(): number{
+  return this.employee?.baseSalary + this.calculateTotalDeventions() + this.calculateTotalNonSalarialPerceptions();
+}
 
+  totalComplements(): number {
+    return this.complement1 + this.complement2 + this.complement3;
+  }
 }

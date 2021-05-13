@@ -223,7 +223,7 @@
         Otras percepciones salariales:
 
         <input type="number"  class="indemndata" name="especieSalary" placeholder="Cuantía">
-        <span class="totalDevenued">A.- TOTAL DEVENGADO<span class = mx-5> {{totalDeventions}} </span></span>
+        <span class="totalDevenued">A.- TOTAL DEVENGADO<span class = mx-5> {{calculateTotalDeventions()}} </span></span>
 
       </div>
 
@@ -280,7 +280,7 @@
         </div>
         <span class="my-2">B.- TOTAL A DEDUCIR <span class="totalApported " >{{totalDeductions}} €</span></span>
 
-        BRUTO: {{bruteSalary}}
+        BRUTO: {{calculateBruteSalary()}}
         NETO: {{netSalary}}
 
     </div>

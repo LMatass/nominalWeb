@@ -1,4 +1,4 @@
-import { NumberSymbol } from "@angular/common";
+import { NumberSymbol } from '@angular/common';
 
 export class Payroll
 {   startDate: Date;
