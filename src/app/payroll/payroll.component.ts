@@ -29,9 +29,9 @@ export class PayrollComponent implements OnInit {
 
   public payroll: Payroll;
 
-  constructor(private employeeService: EmployeeService) {
+  constructor(private employeeService: EmployeeService) {}
 
-  }
+
 
 
   // Gets all employees from service
@@ -137,5 +137,6 @@ export class PayrollComponent implements OnInit {
 
   totalComplements(): number {
     return this.payroll.complement1Import + this.payroll.complement2Import + this.payroll.complement3Import;
+
   }
 }

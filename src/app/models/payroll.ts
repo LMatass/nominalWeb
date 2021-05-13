@@ -34,6 +34,7 @@ export class Payroll
      complement1Import: number;
      complement2Name: string;
      complement2Import: number;
+
      complement3Name: string;
      complement3Import: number;
      majorForceExtraHoursImport: number;
