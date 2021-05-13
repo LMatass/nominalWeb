@@ -19,42 +19,6 @@ export class PayrollComponent implements OnInit {
   public keyword = 'name';
   public data: Observable<Employee[]>;
   public keywords = ['name', 'dni' , 'id'];
-  public startDate: Date;
-  public endDate: Date;
-  public dateDiff: number;
-  public totalDeventions = 0;
-  public commonContingencies = this.totalDeventions * 4.70 / 100;
-  public unemployement = this.totalDeventions * 1.55 / 100;
-  public professionalformation = this.totalDeventions * 0.10 / 100;
-  public majorForceHoursDeduction = this.totalDeventions * 2 / 100;
-  public otherExtraHoursDeduction = this.totalDeventions * 4.7 / 100;
-  public totalAportations = this.commonContingencies + this.unemployement
-  + this.professionalformation + this.majorForceHoursDeduction + this.otherExtraHoursDeduction;
-  public irpf = 0;
-  public irpfDeduction = 0;
-  public anticipation = 0;
-  public especieSalary = 0;
-  public otherDeductions = 0;
-  public totalDeductions = 0;
-  public indemnization1 =  0;
-  public indemnization2 = 0;
-  public indemnization3 = 0;
-  public totalIndemnizations = 0;
-  
-  public complement1 = 0;
-  public complement2 = 0;
-  public complement3 = 0;
-  public majorForceExtraHours = 0;
-  public restExtraHours = 0;
-  public otherExtraHours = 0;
-  public complementaryHours = 0;
-  public extraordinaryGratifications = 0;
-  SSprestationsOrIndemnizations = 0;
-  otherIndemnizations = 0;
-  otherSalaryPerceptions = 0;
-  nonSalarialPerceptions = 0;
-  bruteSalary = 0;
-  netSalary =  0;
 
 
 
@@ -63,7 +27,7 @@ export class PayrollComponent implements OnInit {
 
   @Input() company: Company;
 
-  private payroll: Payroll;
+  public payroll: Payroll;
 
   constructor(private employeeService: EmployeeService) {
 
@@ -90,32 +54,41 @@ export class PayrollComponent implements OnInit {
   }
 
 
-  calculateDateDiff(): void{
-    const date1 = new Date(this.startDate);
-    const  date2 = new Date(this.endDate);
+  calculateDateDiff(): number{
+    const date1 = new Date(this.payroll.startDate);
+    const  date2 = new Date(this.payroll.endDate);
     const time = date2.getTime() - date1.getTime();
-    this.dateDiff =  time / (1000 * 3600 * 24); // Difference in Days
+    this.payroll.dateDiff =  time / (1000 * 3600 * 24); // Difference in Days
+    return this.payroll.dateDiff;
   }
 
   // tslint:disable-next-line: typedef
-  public setIrpfDeduction(){
-    this.irpfDeduction = this.totalDeventions * this.irpf / 100;
+  public setIrpfDeduction(): void{
+    this.payroll.irpfDeduction = this.payroll.netSalary * this.payroll.irpfPercent / 100;
+  }
+
+  public calculateIrpfDeduction(): number{
+    this.setIrpfDeduction();
+    return this.payroll.irpfDeduction;
+  }
+  public calculateTotalAportations(): number{
+    this.payroll.totalAportations = this.payroll.commonContingenciesDeduction + this.payroll.unemployementDeduction +
+    this.payroll.professionalFormationDeduction + this.payroll.majorForceExtraHoursDeduction + this.payroll.otherExtraHoursDeduction;
+    return this.payroll.totalAportations;
   }
 
   // tslint:disable-next-line: typedef
-  public calculateDeductions(){
-    this.totalDeductions = this.totalAportations + this.irpfDeduction + this.anticipation + this.especieSalary
-    + this.otherDeductions;
-    return this.totalDeductions;
+  public calculateTotalDeductions(){
+    this.payroll.totalDeductions = this.calculateTotalAportations() + this.calculateIrpfDeduction() +
+    this.payroll.anticipations + this.payroll.especieSalaryImport  + this.payroll.otherDeductions;
+    return this.payroll.totalDeductions;
 
   }
 
 
   // tslint:disable-next-line: typedef
-  calculateTotalIndemnizations(){
-    const total = (this.indemnization1 +  this.indemnization2 + this.indemnization3 + this.otherSalaryPerceptions);
-    this.totalIndemnizations = total;
-    return total;
+  calculateTotalIndemnizations(): number{
+    return (this.payroll.indemnization1Import +  this.payroll.indemnization2Import + this.payroll.indemnization3Import + this.payroll.otherSalaryPerceptions);
   }
 
 
@@ -125,31 +98,44 @@ export class PayrollComponent implements OnInit {
     if ( !this.employee ){
       return 0;
     }
-    return this.employee?.baseSalary + this.totalComplements() + this.majorForceExtraHours +
-     this.otherExtraHours + this.complementaryHours + this.extraordinaryGratifications + this.especieSalary;
+    
+    this.payroll.totalDeventions = this.employee?.baseSalary + this.totalComplements() +
+     this.payroll.majorForceExtraHoursImport +this.payroll.otherExtraHoursImport +
+     this.payroll.complementaryHoursImport + this.payroll.extraordinaryGratificationsImport
+     this.payroll.especieSalaryImport + this.calculateTotalNonSalarialPerceptions();
+
+     return this.payroll.totalDeventions
 
   }
 
 
   // tslint:disable-next-line: typedef
   calculateTotalNonSalarialPerceptions() {
-    return this.calculateTotalIndemnizations() + this.SSprestationsOrIndemnizations +
-    this.otherIndemnizations + this.otherSalaryPerceptions;
+    return this.calculateTotalIndemnizations() + this.payroll.SSprestationsOrIndemnizations +
+    this.payroll.otherIndemnizations + this.payroll.otherSalaryPerceptions;
+
+
+  }
+
+  calculateBruteSalary(){
+   return this.calculateTotalDeventions();
+   
   }
 
   // tslint:disable-next-line: typedef
   calculateSalaries(){
-    this.bruteSalary =  this.employee?.baseSalary +  this.calculateTotalDeventions() + this.calculateTotalNonSalarialPerceptions();
 
-    this.netSalary =  (this.employee?.baseSalary + this.calculateTotalDeventions() -
-     this.calculateDeductions()) + ( this.calculateTotalNonSalarialPerceptions() * this.irpf / 100);
+    this.payroll.bruteSalary = this.calculateBruteSalary();
+
+    this.payroll.netSalary =  this.calculateBruteSalary() - this.calculateIrpfDeduction();
   }
 
-  calculateBruteSalary(): number{
-  return this.employee?.baseSalary + this.calculateTotalDeventions() + this.calculateTotalNonSalarialPerceptions();
-}
+
+  getNetSalary(){
+    return this.payroll.netSalary;
+  }
 
   totalComplements(): number {
-    return this.complement1 + this.complement2 + this.complement3;
+    return this.payroll.complement1Import + this.payroll.complement2Import + this.payroll.complement3Import;
   }
 }

@@ -12,11 +12,15 @@ export class Payroll
      companyName: string;
      companyAdress: string;
      city: string;
+     cif: number;
+     ccc: number;
 
      /**
       * Employee
       */
-     name: string;
+     employee_name: string;
+     employee_second_name: string;
+     employee_last_name: string;
      nif: string;
      naf: string;
      jobPosition: string;
@@ -29,7 +33,7 @@ export class Payroll
      complement1Name: string;
      complement1Import: number;
      complement2Name: string;
-     complement2Import: string;
+     complement2Import: number;
      complement3Name: string;
      complement3Import: number;
      majorForceExtraHoursImport: number;
@@ -44,7 +48,7 @@ export class Payroll
      indemnization1Name: string;
      indemnization1Import: number;
      indemnization2Name: string;
-     indemnization2Import: string;
+     indemnization2Import: number;
      indemnization3Name: string;
      indemnization3Import: number;
      SSprestationsOrIndemnizations: number;

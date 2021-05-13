@@ -1,7 +1,7 @@
 <!-- This should retrieve data from search component-->
 
 
-<div class="container-lg">
+<div class="container-fluid">
 
 <div class="searchBars ">
 <app-employees-search-bar class="employeeSearch" (employeeEvent)="receiveEmployee($event)"></app-employees-search-bar>
@@ -13,7 +13,7 @@
 
   <div class="employeeForm">
 
-    <div class="showData">
+    <div class="showData ">
       <h4 >Datos trabajador</h4>
     </div>
 
@@ -39,7 +39,7 @@
       <label for="id">Id trabajador
       <input [disabled]="true" name="id" ngModel={{employee?.id}}>
       </label>
-
+      <br>
       <label for="naf">Nº Afiliación SS
       <input [disabled]="true" name="naf" ngModel={{employee?.naf}}>
       </label>
@@ -110,9 +110,9 @@
     </span>
     <label for="payrollDate" class="inputDate">
     del:
-  <input type="date"  [(ngModel)]="startDate " class="inputDate mx-4" required>
+  <input type="date"  [(ngModel)]="payroll.startDate " class="inputDate mx-4" required>
     al:
-    <input type="date" (change)="calculateDateDiff()"  [(ngModel)]="endDate" class="inputDate mx-4" required >
+    <input type="date" (change)="calculateDateDiff()"  [(ngModel)]="payroll.endDate" class="inputDate mx-4" required >
     <span class="days">
       Total días:&nbsp; {{dateDiff}}
     </span>
@@ -128,7 +128,7 @@
       <section class="salarial">
 
         <div class="title">
-            <h6>Percepciones Salariales (Sujetas a cotización)</h6>
+            <h6>Percepciones Salariales</h6>
         </div>
 
         <form #f="ngForm"  novalidate>
@@ -137,53 +137,55 @@
           </span>
 
             <span class="nospace">
-              Complementos salariales: &nbsp;  <span class="mx-5"> Importe</span>
+              Complementos salariales:  <span class="import"> Importe</span>
             </span>
               <div class="complements">
                 <input type="text"  name="complement" placeholder="Nombre complemento">
-                <input type="number" (change)="calculateTotalDeventions();"(change)="calculateSalaries()" [(ngModel)]="complement1" class="data" name="complement1value" placeholder="importe">
+                <input type="number" class="data" name="complement1value" placeholder="importe">
               </div>
 
 
               <div class="complements">
                 <input type="text"  name="complement" placeholder="Nombre complemento">
-                <input type="number"(change)="calculateTotalDeventions();"(change)="calculateSalaries()"  [(ngModel)]="complement2" class="data" name="complement1value" placeholder="importe">
+                <input type="number" class="data" name="complement1value" placeholder="importe">
               </div>
               <div class="complements">
                 <input type="text"   name="complement1" placeholder="Nombre complemento">
-                <input type="number"(change)="calculateSalaries()" (change)="calculateTotalDeventions();"  [(ngModel)]="complement3" class="data" name="complement1value" placeholder="importe">
+                <input type="number" class="data" name="complement1value" placeholder="importe">
               </div>
 
             <div class="complements">
               Horas extras fuerza mayor: &nbsp;
-              <input type="number" [(ngModel)]="majorForceExtraHours"(change)="calculateSalaries()" (change)="calculateTotalDeventions();" class="data" name="majorForceHours" placeholder="Nº horas">
+              <input type="number"  class="data" name="majorForceHours" placeholder="Nº horas">
             </div>
 
             <div class="complements">
               Horas extras resto: &nbsp;
-              <input type="number"   [(ngModel)]="otherExtraHours"(change)="calculateSalaries()" (change)="calculateTotalDeventions();" class="data" name="restExtraHours" placeholder="Nº horas">
+              <input type="number"    class="data" name="restExtraHours" placeholder="Nº horas">
             </div>
 
             <div class="complements">
               Horas complementarias: &nbsp;
-              <input type="number"(change)="calculateSalaries()" (change)="calculateTotalDeventions();"  [(ngModel)]="complementaryHours"  class="data" name="complementaryHours" placeholder="Nº horas">
+              <input type="number"  class="data" name="complementaryHours" placeholder="Nº horas">
             </div>
 
             <div class="complements">
               Gratificaciones extraordinarias:
-              <input type="number" (change)="calculateSalaries()"(change)="calculateTotalDeventions();"  [(ngModel)]="extraordinaryGratifications"  class="data" name="extraGratifications" placeholder="Cuantía">
+              <input type="number"   class="data" name="extraGratifications" placeholder="Cuantía">
             </div>
 
             <div class="complements">
               Salario en especie:  &nbsp;
-              <input type="number"(change)="calculateSalaries()" (change)="calculateTotalDeventions();"  [(ngModel)]="especieSalary"  class="data" name="especieSalary" placeholder="Cuantía">
+              <input type="number" class="data" name="especieSalary" placeholder="Cuantía">
             </div>
         </form>
 
       </section>
 
 
+  
 
+      
 
 
     </section>
@@ -194,29 +196,29 @@
     </div>
 
     <span class="nospace">
-      Indemnizaciones o suplidos <span class="mx-3"> Importe</span>
+      Indemnizaciones o suplidos <span class="import"> Importe</span>
     </span>
       <div class="complements">
         <input type="text" name="indemnization1" placeholder="Nombre">
-        <input type="number" (change)="calculateTotalIndemnizations()" (change)="calculateSalaries()" (change)="calculateDeductions()"  [(ngModel)]="indemnization1" class="indemndata" name="indemnization1value" placeholder="importe">
+        <input type="number"  class="indemndata" name="indemnization1value" placeholder="importe">
       </div>
       <div class="complements">
         <input type="text" name="indemnization2" placeholder="Nombre ">
-        <input type="number" (change)="calculateTotalIndemnizations()"(change)="calculateSalaries()" (change)="calculateDeductions()" [(ngModel)]="indemnization2" class="indemndata" name="indemnization2value" placeholder="importe">
+        <input type="number"  class="indemndata" name="indemnization2value" placeholder="importe">
       </div>
       <div class="complements">
         <input type="text" name="indemnization3" placeholder="Nombre ">
-        <input type="number" (change)="calculateTotalIndemnizations()" (change)="calculateSalaries()" (change)="calculateDeductions()" [(ngModel)]="indemnization3" class="indemndata" name="indemnization3value" placeholder="importe">
+        <input type="number"  class="indemndata" name="indemnization3value" placeholder="importe">
       </div>
 
       <div class="complements">
         Prestaciones e <br> indemnizaciones de la S.S.
-        <input type="number" (change)="calculateTotalIndemnizations()" (change)="calculateSalaries()" (change)="calculateDeductions()" [(ngModel)]="SSprestationsOrIndemnizations"  class="indemndata" name="especieSalary" placeholder="Cuantía">
+        <input type="number" class="indemndata" name="especieSalary" placeholder="Cuantía">
       </div>
 
       <div class="complements">
         Indemnizaciones por traslados,<br> suspensiones o despidos:
-        <input type="number"  (change)="calculateTotalIndemnizations()" (change)="calculateSalaries()" (change)="calculateDeductions()" [(ngModel)]="otherIndemnizations"  class="indemndata" name="especieSalary" placeholder="Cuantía">
+        <input type="number"    class="indemndata" name="especieSalary" placeholder="Cuantía">
       </div>
 
       <div class="complements">
@@ -240,49 +242,48 @@
 
 
       <div class="aportations">
-        <span>Contingencias comunes &nbsp; <span class="percentResult">4,70% * {{totalDeventions}} = {{commonContingencies}} €</span></span>
+        <span>Contingencias comunes &nbsp; <span class="percentResult">4,70% * {{calculateTotalDeventions()}} = {{commonContingencies}} €</span></span>
 
-        <span>Desempleo &nbsp; <span class="percentResult">1,55% * {{totalDeventions}} = {{unemployement}} €</span></span>
+        <span>Desempleo &nbsp; <span class="percentResult">1,55% * {{calculateTotalDeventions()}} = {{unemployement}} €</span></span>
 
-        <span>Formación profesional &nbsp; <span class="percentResult"> &nbsp;&nbsp;0,10% * {{totalDeventions}} = {{professionalformation}} €</span></span>
+        <span>Formación profesional &nbsp; <span class="percentResult"> &nbsp;&nbsp;0,10% * {{calculateTotalDeventions()}} = {{professionalformation}} €</span></span>
 
-        <span>Horas Extras Fuerza mayor &nbsp; <span class="percentResult mx-4">&nbsp;&nbsp;2% * {{totalDeventions}} = {{majorForceHoursDeduction}} €</span></span>
+        <span>Horas Extras Fuerza mayor &nbsp; <span class="percentResult ">&nbsp;&nbsp;2% * {{calculateTotalDeventions()}} = {{majorForceHoursDeduction}} €</span></span>
 
-        <span>Horas Extras Resto &nbsp; <span class="percentResult">4,70% * {{totalDeventions}} = {{restExtraHours}} €</span></span>
+        <span>Horas Extras Resto &nbsp; <span class="percentResult">4,70% * {{calculateTotalDeventions()}} = {{restExtraHours}} €</span></span>
 
-        <span>TOTAL APORTACIONES <span class="totalApported" >{{totalAportations}} €</span></span>
+        <span>TOTAL APORTACIONES <span class="totalApported" >{{calculateTotalAportations()}} €</span></span>
 
       </div>
 
 
       <div class="deductionTitle">
         <h6>2. Impuesto Sobre la Renta <br> de Personas Físicas</h6>
-        <input class="deductionInput" (change)="setIrpfDeduction()" (change)="calculateSalaries()" (change)="calculateTotalIndemnizations" (change)="calculateDeductions()" [(ngModel)]="irpf" type="number"  name="irpf" >
-        <span class="mx-2 alignResult"> %  &nbsp;* {{totalDeventions}} =<span *ngIf="irpfDeduction" class="totalApported mx-4">{{irpfDeduction}} €</span></span>
+        <input class="deductionInput" type="number"  name="irpf" >
+        <span class="mx-2 alignResult"> %  &nbsp;* {{totalDeventions}} =<span *ngIf="calculateIrpfDeduction()" class="totalApported mx-4">{{irpfDeduction}} €</span></span>
       </div>
 
       <div class="deductionTitle">
         <h6>3. Anticipos</h6>
-        <input class="smallInput" [(ngModel)]="anticipation" (change)="calculateSalaries()" (change)="calculateDeductions()" type="number"  name="anticipations" placeholder="Cuantía">
+        <input class="smallInput"  type="number"  name="anticipations" placeholder="Cuantía">
 
       </div>
 
       <div class="deductionTitle">
         <h6>4. Valor de los productos <br> recibidos en especie</h6>
-        <input class="smallInput " [(ngModel)]="especieSalary"(change)="calculateSalaries()" (change)="calculateDeductions()" type="number"  name="especieProductsValue" placeholder="Cuantía">
+        <input class="smallInput " type="number"  name="especieProductsValue" placeholder="Cuantía">
 
         </div>
 
         <div class="deductionTitle">
         <h6>5. Otras deducciones</h6>
-        <input class="smallInput" [(ngModel)]="otherDeductions" (change)="calculateSalaries()" (change)="calculateDeductions()" type="number"  name="especieProductsValue" placeholder="Cuantía">
+        <input class="smallInput"  type="number"  name="especieProductsValue" placeholder="Cuantía">
 
         </div>
-        <span class="my-2">B.- TOTAL A DEDUCIR <span class="totalApported " >{{totalDeductions}} €</span></span>
+        <span class="my-2">B.- TOTAL A DEDUCIR <span class="totalApported " >{{calculateTotalDeductions()}}} €</span></span>
 
         BRUTO: {{calculateBruteSalary()}}
-        NETO: {{netSalary}}
-
+        NETO: {{getNetSalary()}}
     </div>
 
 
