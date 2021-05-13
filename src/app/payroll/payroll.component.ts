@@ -62,7 +62,8 @@ export class PayrollComponent implements OnInit {
 
   @Input() company: Company;
 
-  constructor(private employeeService: EmployeeService) {
+
+  constructor(private employeeService: EmployeeService, private payroll: Payroll) {
 
   }
 
@@ -147,6 +148,6 @@ export class PayrollComponent implements OnInit {
 }
 
   totalComplements(): number {
-    return this.complement1 + this.complement2 + this.complement3;
+    return this.payroll.complement1Import + this.complement2 + this.complement3;
   }
 }
