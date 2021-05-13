@@ -1,15 +1,15 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Employee } from '../employees/models/employee';
-import { EmployeeService } from './../employees/employee.service';
+import { Employee } from '../models/employee';
+import { EmployeeService } from '../Services/employee.service';
 import { DatePipe } from '@angular/common';
 
 @Component({
-  selector: 'app-search-bar',
-  templateUrl: './search-bar.component.html',
-  styleUrls: ['./search-bar.component.css']
+  selector: 'app-employees-search-bar',
+  templateUrl: './employees-search-bar.component.html',
+  styleUrls: ['./employees-search-bar.component.css']
 })
-export class SearchBarComponent implements OnInit {
+export class EmployeesSearchBarComponent implements OnInit {
   public keyword = 'name';
   public data: Observable<Employee[]>;
   public keywords = ['name', 'dni'];

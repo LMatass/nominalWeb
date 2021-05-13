@@ -1,7 +1,7 @@
-import { EmployeeService } from './employee.service';
+import { EmployeeService } from '../Services/employee.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Employee } from './models/employee';
+import { Employee } from '../models/employee';
 @Component({
   selector: 'app-employees',
   templateUrl: './employees.component.html',

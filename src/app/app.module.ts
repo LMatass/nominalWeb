@@ -10,10 +10,11 @@ import { HeaderComponent } from './header/header.component';
 import { MainpageComponent } from './mainpage/mainpage.component';
 import { PayrollComponent } from './payroll/payroll.component';
 import { SidebarModule } from 'ng-sidebar';
-import { SearchBarComponent } from './search-bar/search-bar.component';
+import { EmployeesSearchBarComponent } from './employees-search-bar/employees-search-bar.component';
 import { EmployeesPageComponent } from './employees-page/employees-page.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { DatePipe } from '@angular/common';
+import { CompaniesSearchBarComponent } from './companies-search-bar/companies-search-bar.component';
 
 
 @NgModule({
@@ -23,9 +24,10 @@ import { DatePipe } from '@angular/common';
     MainpageComponent,
     EmployeesComponent,
     PayrollComponent,
-    SearchBarComponent,
+    EmployeesSearchBarComponent,
     EmployeesPageComponent,
     HomepageComponent,
+    CompaniesSearchBarComponent,
 
     ],
   imports: [

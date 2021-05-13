@@ -1,10 +1,10 @@
 import { Router } from '@angular/router';
-import { EmployeeService } from './employees/employee.service';
+import { EmployeeService } from './Services/employee.service';
 import { EmployeesComponent } from './employees/employees.component';
 import { HttpErrorResponse } from '@angular/common/http';
 import { OnInit } from '@angular/core';
 import { Component } from '@angular/core';
-import { Employee } from './employees/models/employee';
+import { Employee } from './models/employee';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',

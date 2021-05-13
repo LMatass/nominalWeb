@@ -1,15 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Employee } from './models/employee';
+import { Employee } from '../models/employee';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmployeeService {
-
-  public example$: Observable<any[]>;
 
 
   private apiServerUrl = environment.apiBaseUrl;
@@ -18,9 +16,8 @@ export class EmployeeService {
 
   // gets employees from back end service
   public getEmployees(): Observable<Employee[]>{
-    this.example$ =  this.http.get<Employee[]>(`${this.apiServerUrl}/employees/all`);
-    return this.example$;
-  }
+   return this.http.get<Employee[]>(`${this.apiServerUrl}/employees/all`);
+    }
 
   // finds an employee from given id
   public findEmployee(employeeId: number): Observable<Employee>{

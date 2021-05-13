@@ -1,13 +1,14 @@
-.container{
-  width: 100%;
+.container-lg{
+  width: 100vw;
+
 }
 
 .formsContainer{
   margin-top: 3rem;
   position: relative;
   width: 100%;
-  display: flex;
-
+  display: row;
+  right: 20%;
 }
 
 .autocomplete{
@@ -35,13 +36,15 @@ input {
   border-radius: 8px;
   box-sizing: border-box;
 
+
 }
 
 label {
   display: inline-block;
-  width: 15em;
+  width: 10em;
   margin-right: 10rem;
-  padding-top: 1.5em;
+  padding-bottom: 1.5em;
+
 
 }
 .extra{
@@ -58,7 +61,10 @@ label {
 }
 
 
-
+.update{
+  display: inline;
+  margin-bottom: 3rem;
+}
 
 .liquidationDate{
 
@@ -71,23 +77,181 @@ label {
 
 .days{
   width: 100%;
+  margin-right: 2.5rem;
 }
 
 .period{
-  margin-top: 1.5rem;
   margin-right: 1rem;
   text-align: center;
 }
-/* input {
-  display: inline-block;
-  width: 6em;
+
+.searchBars{
   position: relative;
-  top: -em;
+  right: 20%;
+  display: flex;
+}
+.employeeSearch{
+  margin-right: 5rem;
 }
 
-label {
-  display: inline-block;
-  width: 6em;
-  margin-right: .5em;
-  padding-top: 1.5em;
-} */
+.employeeForm{
+  width: 100%
+}
+
+.companyForm{
+  display: flex;
+  width: 100%;
+}
+span{
+  white-space:nowrap;
+  display: flex;
+
+}
+
+.showData{
+  position: relative;
+  margin-bottom: 1rem;
+  top: 50%;
+  left: 45%;
+  margin-left: -100px;
+}
+
+
+
+.deductions{
+  margin-left: 5rem;
+  margin-bottom: .5rem;
+}
+
+
+.aportation{
+  display: flex;
+  margin-top: .5rem;
+}
+
+
+.aportationInput{
+  position: absolute;
+  left: 71%;
+  width: 100px;
+}
+
+.result{
+  position: absolute;
+  left: 80%
+}
+
+
+
+.title{
+  white-space: nowrap;
+  margin-top: .75rem;
+  margin-bottom: .75rem;
+
+}
+
+.dataform{
+  width: 50%;
+}
+
+.field{
+  margin-bottom: .5rem
+}
+
+.nospace{
+  white-space: nowrap;
+}
+
+.complements{
+  display: flex;
+  margin-bottom: .75rem;
+  margin-top: .75rem;
+  margin-right: .5rem;
+
+}
+
+
+
+.data{
+  position: absolute;
+  left: 18%;
+  width: 100px;
+  text-align: center;
+}
+
+.absdata{
+  position: absolute;
+  left: 18%;
+  width: 100px;
+  margin-top: 1rem;
+
+}
+.salarial{
+  margin-right: auto;
+}
+
+.nonsalarial{
+  margin-top: 2%;
+  margin-left: 5%;
+}
+
+.indemndata{
+  width:  9vh;
+  position: absolute;
+  text-align: center;
+  left: 46%;
+  margin-left: 1rem;
+  height: 2.5vh;
+}
+
+.totalDeventions{
+  position: absolute;
+  left: 20%;
+  top: 105%;
+}
+
+.percentResult{
+  position: absolute;
+  left: 77%;
+}
+
+.totalApported{
+  position: absolute;
+  left: 85%;
+}
+.totalDevenued{
+  position: absolute;
+  left: 0%;
+  bottom: 1.5%;
+  margin-right: 100vh;
+}
+
+
+
+.deductionTitle{
+  margin-top: 2rem;
+  display: flex;
+}
+
+.deductionInput{
+  margin-left: 1rem;
+  height: 75;
+  width: 10%;
+  text-align: center;
+}
+
+.alignResult{
+
+  margin-top: .5rem;
+}
+
+.smallInput{
+  position: absolute;
+  left: 84%;
+  width: 2.5vw;
+
+}
+
+input {
+  text-align: center;
+}

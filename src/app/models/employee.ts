@@ -1,6 +1,7 @@
 export class Employee {
   name: string;
   secondName: string;
+  lastName: string;
   id: number;
   dni: string;
   naf: string;

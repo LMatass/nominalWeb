@@ -1,0 +1,36 @@
+
+<!--Filters from employees-->
+
+<div class=" wrapper d-flex">
+
+  <div class="select">
+
+  <select [(ngModel)]="keyword">
+    <option *ngFor="let item of keywords" [value]="item">{{item}}</option>
+  </select>
+
+  </div>
+
+
+  <div class="autocomplete">
+
+    <ng-autocomplete
+      [data]="data | async"
+      [searchKeyword]=keyword
+      (selected)='selectEvent($event)'
+      [itemTemplate]="itemTemplate"
+
+
+      placeholder="Busca una empresa..."
+    >
+    </ng-autocomplete>
+
+    <ng-template #itemTemplate let-item>
+      <a [innerHTML]="item.name"></a>
+      </ng-template>
+
+      <ng-template #notFoundTemplate let-notFound>
+      <div [innerHTML]="notFound"></div>
+      </ng-template>
+  </div>
+  </div>

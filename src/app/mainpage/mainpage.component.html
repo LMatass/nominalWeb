@@ -7,7 +7,7 @@
 
  <ul class="menu">
   <li><a routerLink="/home">Home</a></li>
-  <li><a routerLink="/employeespage">Manage employees</a></li>
+  <li class="manage bullet"><a  routerLink="/employeespage">Manage employees</a></li>
   <li><a routerLink="/payroll">Payrolls</a></li><br>
 
   <button class="btn btn-light" (click)="toggleSidebar()">
@@ -20,7 +20,7 @@
 <div ng-sidebar-content >
 
   <div class="wrapper  ">
-    <button  class="iconify bg-dark" style="color:white" data-icon="uil-bars" data-inline="false"(click)="toggleSidebar()">
+    <button  class=" uil uil-bars bg-dark dropdown-toggle" style="color:white" data-icon="uil-bars" data-inline="false"(click)="toggleSidebar()">
 
     </button>
   <div class="header">

@@ -5,7 +5,7 @@ ng-sidebar-container{
 
 ::ng-deep .ng-sidebar {
 
-  background-color: #ffffff;
+  background-color: #494949;
   width: 250px;
   padding: 2em 3em;
   box-shadow: 0 0 2.5em rgb(14, 10, 10)
@@ -18,16 +18,21 @@ ng-sidebar-container{
   width: 100%;
 }
 
-.iconify{
-  background: url('https://api.iconify.design/uil-bars.svg') no-repeat center center / contain;
-  content: url('https://api.iconify.design/uil-bars.svg?height=24');
-  vertical-align: -0.125em;
+
+
+.uil{
+  color: white;
   width: 5%;
 }
-
 .menu a{
   font-size: medium;
   text-decoration: none;
   color: white;
+
+}
+.manage{
+
+    display: inline;
+
 
 }
