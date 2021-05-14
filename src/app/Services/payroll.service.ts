@@ -8,5 +8,11 @@ import { environment } from 'src/environments/environment';
 })
 export class PayrollService {
 
+  private apiServerUrl = environment.apiBaseUrl;
+
+// gets companies from back end service
+public exportHtml(exportId: number): void{
+  window.open((`${this.apiServerUrl}/html/${exportId}`));
+ }
 
 }
