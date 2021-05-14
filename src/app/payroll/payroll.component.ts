@@ -48,7 +48,6 @@ export class PayrollComponent implements OnInit {
   // receives a company from the search bar event
   receiveCompany($event): void {
     this.company = $event;
-    console.log(this.company)
   }
 
 
@@ -171,13 +170,13 @@ public getTotalComplements(): number{
 
   // tslint:disable-next-line: typedef
   public calculatePayroll(){
-    this.payroll.companyId = this.company.id;
+    this.payroll.companyId = this.company?.id;
     this.payroll.companyName = this.company.name;
     this.payroll.companyAddress = this.company.address;
     this.payroll.bruteSalary = this.calculateTotalDeventions();
     this.payroll.netSalary = this.getNetSalary();
+    this.payroll.baseSalary = this.employee.baseSalary;
 
-    console.log(this.payroll.companyAddress)
     this.payroll.city = this.company.city;
     this.payroll.ccc = this.company.ccc;
     this.payroll.cif = this.company.cif;
@@ -191,9 +190,9 @@ public getTotalComplements(): number{
     this.payroll.retributiveGroup =  this.employee.retributiveGroup;
     this.payroll.establishmentCategory = this.employee.establishmentCategory,
 
-    console.log(Object.keys(this.payroll).length)
-    console.log(JSON.stringify(this.payroll));
+
+    typeof(this.payroll)
+    this.payrollService.addPayroll(this.payroll);
+
   }
-
 }
-

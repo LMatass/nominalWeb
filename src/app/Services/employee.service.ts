@@ -16,6 +16,7 @@ export class EmployeeService {
 
   // gets employees from back end service
   public getEmployees(): Observable<Employee[]>{
+
    return this.http.get<Employee[]>(`${this.apiServerUrl}/employees/all`);
     }
 

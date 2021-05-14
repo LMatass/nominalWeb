@@ -37,7 +37,6 @@ export class CompaniesSearchBarComponent implements OnInit {
 
   getCompanies(): void{
     this.data = this.companyService.getCompanies();
-    console.log(this.data);
   }
 
 }
