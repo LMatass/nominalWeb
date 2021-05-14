@@ -12,7 +12,7 @@ import { DatePipe } from '@angular/common';
 export class EmployeesSearchBarComponent implements OnInit {
   public keyword = 'name';
   public data: Observable<Employee[]>;
-  public keywords = ['name', 'dni'];
+  public keywords = ['name', 'nif'];
 
   @Output() employeeEvent = new EventEmitter<Employee>();
 

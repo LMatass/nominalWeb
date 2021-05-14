@@ -8,7 +8,7 @@
 <app-companies-search-bar (companyEvent)="receiveCompany($event)" ></app-companies-search-bar>
 
 </div>
-
+<form>
 <div class="formsContainer">
 
   <div class="employeeForm">
@@ -32,8 +32,8 @@
         <input [disabled]="true" name="lastName" ngModel={{employee?.lastName}}>
         </label>
 
-      <label for="dni">Dni<br>
-      <input [disabled]="true" name="dni" ngModel={{employee?.dni}}>
+      <label for="dni">NIF<br>
+      <input [disabled]="true" name="dni" ngModel={{employee?.nif}}>
       </label>
 
       <label for="id">Id trabajador
@@ -285,7 +285,7 @@
           <span class="salary1"> Salario bruto:  {{calculateTotalDeventions().toFixed(2)}} </span>
           <span class="salary2">Salario neto:   {{getNetSalary().toFixed(2)}}   </span>
         </div>
-        <button ></button>
+         <button type="submit" (click)="calculatePayroll();"></button>
     </div>
 
 
@@ -296,5 +296,5 @@
 
 
   </div>
-
+</form>
 </div>

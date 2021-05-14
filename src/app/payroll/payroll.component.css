@@ -289,3 +289,7 @@ input {
   max-width: 20%;
   margin-left:auto;
 }
+button{
+  height: 3vh;
+  width: 3vw;
+}

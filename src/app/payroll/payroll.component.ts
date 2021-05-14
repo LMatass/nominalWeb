@@ -6,6 +6,7 @@ import { EmployeeService } from '../Services/employee.service';
 import { Observable } from 'rxjs';
 import { Company } from '../models/company';
 import { Payroll } from '../models/payroll';
+import { PayrollService } from '../Services/payroll.service';
 
 @Component({
   selector: 'app-payroll',
@@ -31,7 +32,7 @@ export class PayrollComponent implements OnInit {
   public payroll: Payroll;
 
 
-  constructor() {
+  constructor(private payrollService: PayrollService) {
     this.payroll = new Payroll();
   }
 
@@ -47,6 +48,7 @@ export class PayrollComponent implements OnInit {
   // receives a company from the search bar event
   receiveCompany($event): void {
     this.company = $event;
+    console.log(this.company)
   }
 
 
@@ -167,6 +169,31 @@ public getTotalComplements(): number{
     return this.payroll.irpfPercent;
   }
 
+  // tslint:disable-next-line: typedef
+  public calculatePayroll(){
+    this.payroll.companyId = this.company.id;
+    this.payroll.companyName = this.company.name;
+    this.payroll.companyAddress = this.company.address;
+    this.payroll.bruteSalary = this.calculateTotalDeventions();
+    this.payroll.netSalary = this.getNetSalary();
+
+    console.log(this.payroll.companyAddress)
+    this.payroll.city = this.company.city;
+    this.payroll.ccc = this.company.ccc;
+    this.payroll.cif = this.company.cif;
+    this.payroll.employeeId = this.employee.id;
+    this.payroll.employeeName = this.employee.name;
+    this.payroll.employeeSecondName = this.employee.secondName;
+    this.payroll.employeeLastName = this.employee.lastName;
+    this.payroll.nif = this.employee.nif;
+    this.payroll.naf = this.employee.naf;
+    this.payroll.jobPosition = this.employee.jobPosition;
+    this.payroll.retributiveGroup =  this.employee.retributiveGroup;
+    this.payroll.establishmentCategory = this.employee.establishmentCategory,
+
+    console.log(Object.keys(this.payroll).length)
+    console.log(JSON.stringify(this.payroll));
+  }
 
 }
 

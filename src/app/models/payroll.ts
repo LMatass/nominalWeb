@@ -7,20 +7,23 @@ export class Payroll
 {   startDate: Date;
     endDate: Date;
     dateDiff: number;
+    hireDate: string;
 
     /**
      * Company
      */
 
+     companyId: number;
      companyName: string;
-     companyAdress: string;
+     companyAddress: string;
      city: string;
-     cif: number;
+     cif: string;
      ccc: string;
 
      /**
       * Employee
       */
+     employeeId: number;
      employeeName: string;
      employeeSecondName: string;
      employeeLastName: string;
@@ -28,17 +31,17 @@ export class Payroll
      naf: string;
      jobPosition: string;
      retributiveGroup: string;
-     establishmentCategory: number;
+     establishmentCategory: string;
 
      /**
       * Deventions
       */
      baseSalary: number;
-     complement1Name: string;
+     complement1Name = " ";
      complement1Import = 0;
-     complement2Name: string;
+     complement2Name = " ";
      complement2Import = 0;
-     complement3Name: string;
+     complement3Name =  " ";
      complement3Import = 0;
      majorForceExtraHoursImport = 0;
      otherExtraHoursImport = 0;
@@ -48,11 +51,11 @@ export class Payroll
      totalDeventions = 0;
 
      // non salarial
-     indemnization1Name: string;
+     indemnization1Name=  " ";
      indemnization1Import = 0;
-     indemnization2Name: string;
+     indemnization2Name=  " ";
      indemnization2Import = 0;
-     indemnization3Name: string;
+     indemnization3Name=  " ";
      indemnization3Import = 0;
      SSprestationsOrIndemnizations = 0;
      otherIndemnizations = 0;
