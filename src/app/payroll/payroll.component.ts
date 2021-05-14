@@ -27,116 +27,146 @@ export class PayrollComponent implements OnInit {
 
   @Input() company: Company;
 
+
   public payroll: Payroll;
 
-  constructor(private employeeService: EmployeeService) {}
 
-
-
+  constructor() {
+    this.payroll = new Payroll();
+  }
 
   // Gets all employees from service
   ngOnInit(): void {
-    this.getEmployees();
   }
 
+  // receives an employee from the search bar event
   receiveEmployee($event): void {
-
     this.employee = $event;
-
   }
 
+  // receives a company from the search bar event
   receiveCompany($event): void {
     this.company = $event;
   }
 
-  getEmployees(): void{
-    this.data = this.employeeService.getEmployees();
-  }
 
 
-  calculateDateDiff(): number{
+  setDateDiff(): void{
     const date1 = new Date(this.payroll.startDate);
     const  date2 = new Date(this.payroll.endDate);
     const time = date2.getTime() - date1.getTime();
     this.payroll.dateDiff =  time / (1000 * 3600 * 24); // Difference in Days
+  }
+  getDateDiff(): number{
     return this.payroll.dateDiff;
   }
 
-  // tslint:disable-next-line: typedef
-  public setIrpfDeduction(): void{
-    this.payroll.irpfDeduction = this.payroll.netSalary * this.payroll.irpfPercent / 100;
+  public getBaseSalary(): number{
+    return this.employee.baseSalary;
   }
 
-  public calculateIrpfDeduction(): number{
-    this.setIrpfDeduction();
-    return this.payroll.irpfDeduction;
+/**
+ * Deventions
+ */
+
+public getTotalComplements(): number{
+  return this.payroll.complement1Import + this.payroll.complement2Import + this.payroll.complement3Import;
+}
+  calculateTotalDeventions(): number {
+
+
+    if (!this.employee){
+      return  0;
+    }
+    else{
+    return  this.employee.baseSalary + this.getTotalComplements() +
+     this.payroll.majorForceExtraHoursImport + this.payroll.otherExtraHoursImport +
+     this.payroll.complementaryHoursImport + this.payroll.extraordinaryGratificationsImport +
+    this.payroll.especieSalaryImport + this.calculateTotalNonSalarialPerceptions();
+    }
   }
-  public calculateTotalAportations(): number{
-    this.payroll.totalAportations = this.payroll.commonContingenciesDeduction + this.payroll.unemployementDeduction +
+
+
+
+  /**
+   * Deductions
+   */
+
+  public getIrpfDeduction(): number{
+    return this.calculateTotalDeventions() * this.getIrpfPercent() / 100;
+  }
+
+
+  public getTotalAportations(): number{
+
+    this.payroll.unemployementDeduction = (this.payroll.unemployementPercent / 100) * this.calculateTotalDeventions();
+    this.payroll.professionalFormationDeduction = (this.payroll.professionalFormationPercent / 100) * this.calculateTotalDeventions();
+    this.payroll.majorForceExtraHoursDeduction = (this.payroll.majorForceExtraHoursPercent / 100) * this.calculateTotalDeventions();
+    this.payroll.otherExtraHoursDeduction = (this.payroll.otherExtraHoursPercent / 100) * this.calculateTotalDeventions();
+
+    this.payroll.totalAportations = this.getCommonContingenciesDeduction() + this.payroll.unemployementDeduction +
     this.payroll.professionalFormationDeduction + this.payroll.majorForceExtraHoursDeduction + this.payroll.otherExtraHoursDeduction;
+
     return this.payroll.totalAportations;
   }
 
-  // tslint:disable-next-line: typedef
-  public calculateTotalDeductions(){
-    this.payroll.totalDeductions = this.calculateTotalAportations() + this.calculateIrpfDeduction() +
-    this.payroll.anticipations + this.payroll.especieSalaryImport  + this.payroll.otherDeductions;
-    return this.payroll.totalDeductions;
 
+  public getCommonContingenciesDeduction(): number{
+    return (this.payroll.commonContingenciesPercent / 100) * this.calculateTotalDeventions();
+  }
+
+  public getUnemployementDeduction(): number{
+    return this.payroll.unemployementPercent/100 * this.calculateTotalDeventions();
+  }
+  public getProfessionalFormationDeduction(): number{
+    return (this.payroll.professionalFormationPercent / 100) * this.calculateTotalDeventions();
+  }
+  public getMajorForceExtraHoursDeduction(): number{
+    return (this.payroll.majorForceExtraHoursPercent / 100) *  this.calculateTotalDeventions();
+  }
+  public getOtherExtraHoursDeduction(): number{
+    return (this.payroll.otherExtraHoursPercent / 100) *  this.calculateTotalDeventions();
   }
 
 
-  // tslint:disable-next-line: typedef
-  calculateTotalIndemnizations(): number{
-    return (this.payroll.indemnization1Import +  this.payroll.indemnization2Import + this.payroll.indemnization3Import + this.payroll.otherSalaryPerceptions);
-  }
-
-
-
-  // tslint:disable-next-line: typedef
-  calculateTotalDeventions(): number {
-    if ( !this.employee ){
-      return 0;
+  public getTotalDeductions(): number{
+    if (!this.employee){
+      return  0;
     }
-    
-    this.payroll.totalDeventions = this.employee?.baseSalary + this.totalComplements() +
-     this.payroll.majorForceExtraHoursImport +this.payroll.otherExtraHoursImport +
-     this.payroll.complementaryHoursImport + this.payroll.extraordinaryGratificationsImport
-     this.payroll.especieSalaryImport + this.calculateTotalNonSalarialPerceptions();
 
-     return this.payroll.totalDeventions
+    return  this.getTotalAportations() + this.payroll.irpfDeduction +
+    this.payroll.anticipations + this.payroll.especieProductsValue  + this.payroll.otherDeductions +
+    this.employee?.baseSalary * this.payroll.irpfPercent / 100;
 
   }
 
 
-  // tslint:disable-next-line: typedef
-  calculateTotalNonSalarialPerceptions() {
-    return this.calculateTotalIndemnizations() + this.payroll.SSprestationsOrIndemnizations +
+  getTotalIndemnizations(): number{
+    return (this.payroll.indemnization1Import +  this.payroll.indemnization2Import +
+      this.payroll.indemnization3Import);
+  }
+
+
+
+
+  calculateTotalNonSalarialPerceptions(): number {
+   return  this.payroll.totalDeventions + this.getTotalIndemnizations() + this.payroll.SSprestationsOrIndemnizations +
     this.payroll.otherIndemnizations + this.payroll.otherSalaryPerceptions;
 
-
-  }
-
-  calculateBruteSalary(){
-   return this.calculateTotalDeventions();
-   
-  }
-
-  // tslint:disable-next-line: typedef
-  calculateSalaries(){
-
-    this.payroll.bruteSalary = this.calculateBruteSalary();
-
-    this.payroll.netSalary =  this.calculateBruteSalary() - this.calculateIrpfDeduction();
   }
 
 
-  getNetSalary(){
-    return this.payroll.netSalary;
-  }
+  public getNetSalary(): number{
 
-  totalComplements(): number {
-    return this.payroll.complement1Import + this.payroll.complement2Import + this.payroll.complement3Import;
+
+    return  this.calculateTotalDeventions() - this.getTotalDeductions();
 
   }
+
+  public getIrpfPercent(): number{
+    return this.payroll.irpfPercent;
+  }
+
+
 }
+

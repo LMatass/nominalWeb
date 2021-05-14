@@ -1,6 +1,6 @@
 .container-fluid{
   width: 100%;
-  
+
 
 }
 .import{
@@ -13,7 +13,7 @@
   width: 90%;
   display: row;
   margin-left: auto;
-  
+
 }
 
 .autocomplete{
@@ -25,14 +25,14 @@
 }
 
 select{
-  font-size: 1rem;
+  font-size: .9rem;
   color:#000;
   height: 40px;
   text-transform: capitalize;
 }
 
 .wrapper{
-  margin-top: 1rem;
+  margin-top: .9rem;
   justify-content: center;
 }
 
@@ -95,7 +95,7 @@ label {
   display: flex;
   margin-bottom: 1.55rem;
   margin-left: 32.5%;
- 
+
 
 }
 .employeeSearch{
@@ -117,16 +117,14 @@ span{
 }
 
 .showData{
-  font-size: 1.5rem;
-  position: relative;
-  margin-bottom: 1rem;
-  margin-left: 40%;
-  top: 50%;
+ margin-right: 25%;
+ text-align: center;
 }
 
 
 
 .deductions{
+  margin-top: -1rem;
   margin-left: 5rem;
   margin-bottom: .5rem;
 }
@@ -181,8 +179,8 @@ span{
 
 
 .data{
-  width:  8vh;
-  height: 3.5vh;
+  width:  25%;
+  height: 40%;
   position: relative;
   margin-left: auto;
   text-align: center;
@@ -208,16 +206,16 @@ span{
 .indemndata{
   position: relative;
   left: 20px;
-  width:  8vh;
+  width:  25%;
   text-align: center;
   margin-left: auto;
-  height: 3.5vh;
+  height: 30%;
 }
 
 .totalDeventions{
-  position: absolute;
-  left: 20%;
-  top: 105%;
+  margin-left: 75%;
+  font-weight: 600;
+  font-size: 1rem;
 }
 
 .percentResult{
@@ -228,14 +226,15 @@ span{
   margin-left: auto;
 }
 .totalDevenued{
+  display: flex;
   position: absolute;
-  left: 0%;
-  bottom: 1.5%;
-  margin-right: 100vh;
+  bottom: 8%;
+  font-size: 1rem;
+  font-weight: bold;
 }
 
 .deventions{
-  width: 14%;
+  width: 20%;
 }
 
 
@@ -245,29 +244,48 @@ span{
 }
 
 .deductionInput{
-  margin-left: 1rem;
+  margin-left: auto;
   height: 75;
   width: 10%;
   text-align: center;
 }
 
-.alignResult{
-  margin-left: auto;
-  margin-top: .5rem;
-}
-
 .smallInput{
-  height: 3.5vh;
-  width: 2.5vw;
+  height: 30%;
+  width:15%;
   margin-left: auto;
 
 }
 
 input {
-  height: 3.5vh;
+  height: 50%;
   text-align: center;
 }
- 
+
 *{
   font-size: .9rem;
+}
+
+
+.salaries{
+  margin-top: .5rem;
+  display: flex;
+
+}
+.salary1{
+  width: 100%;
+  float:left;
+  font-weight: 700;
+}
+
+.salary2{
+  font-weight: 700;
+}
+
+
+
+.alignResult{
+  margin-right: -1rem;
+  max-width: 20%;
+  margin-left:auto;
 }
