@@ -37,11 +37,11 @@ export class Payroll
       * Deventions
       */
      baseSalary: number;
-     complement1Name = " ";
+     complement1Name = ' ';
      complement1Import = 0;
-     complement2Name = " ";
+     complement2Name = ' ';
      complement2Import = 0;
-     complement3Name =  " ";
+     complement3Name =  ' ';
      complement3Import = 0;
      majorForceExtraHoursImport = 0;
      otherExtraHoursImport = 0;
@@ -51,11 +51,11 @@ export class Payroll
      totalDeventions = 0;
 
      // non salarial
-     indemnization1Name=  " ";
+     indemnization1Name =  ' ';
      indemnization1Import = 0;
-     indemnization2Name=  " ";
+     indemnization2Name =  ' ';
      indemnization2Import = 0;
-     indemnization3Name=  " ";
+     indemnization3Name =  ' ';
      indemnization3Import = 0;
      SSprestationsOrIndemnizations = 0;
      otherIndemnizations = 0;

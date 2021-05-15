@@ -13,14 +13,14 @@ export class MainpageComponent implements OnInit {
   opened = false;
 
   // opens-closes sidebar
-  toggleSidebar(){
+  toggleSidebar(): void{
     this.opened = !this.opened;
   }
 
 
   constructor(private employeeService: EmployeeService){}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.employeeService.getEmployees();
 
   }

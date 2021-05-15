@@ -57,7 +57,7 @@ export class PayrollComponent implements OnInit {
   }
 
 
-
+// sets the date difference in days given the template selected dates
   setDateDiff(): void{
     this.dateAdded = true;
     const date1 = new Date(this.payroll.startDate);
@@ -65,6 +65,7 @@ export class PayrollComponent implements OnInit {
     const time = date2.getTime() - date1.getTime();
     this.payroll.dateDiff =  time / (1000 * 3600 * 24); // Difference in Days
   }
+
   getDateDiff(): number{
     return this.payroll.dateDiff;
   }
@@ -94,6 +95,19 @@ public getTotalComplements(): number{
     }
   }
 
+  getTotalIndemnizations(): number{
+    return (this.payroll.indemnization1Import +  this.payroll.indemnization2Import +
+      this.payroll.indemnization3Import);
+  }
+
+
+
+
+  calculateTotalNonSalarialPerceptions(): number {
+   return  this.payroll.totalDeventions + this.getTotalIndemnizations() + this.payroll.SSprestationsOrIndemnizations +
+    this.payroll.otherIndemnizations + this.payroll.otherSalaryPerceptions;
+
+  }
 
 
   /**
@@ -104,18 +118,22 @@ public getTotalComplements(): number{
     return this.calculateTotalDeventions() * this.getIrpfPercent() / 100;
   }
 
-
+  // sums all the ss aportations given all the deductions, which are the percentage per the total deventions
   public getTotalAportations(): number{
 
-    this.payroll.unemployementDeduction = parseFloat(((this.payroll.unemployementPercent / 100) * this.calculateTotalDeventions()).toFixed(2));
-    this.payroll.professionalFormationDeduction = parseFloat(((this.payroll.professionalFormationPercent / 100) * this.calculateTotalDeventions()).toFixed(2));
-    this.payroll.majorForceExtraHoursDeduction = parseFloat(((this.payroll.majorForceExtraHoursPercent / 100) * this.calculateTotalDeventions()).toFixed(2));
-    this.payroll.otherExtraHoursDeduction = parseFloat(((this.payroll.otherExtraHoursPercent / 100) * this.calculateTotalDeventions()).toFixed(2));
+    this.payroll.unemployementDeduction =
+     parseFloat(((this.payroll.unemployementPercent / 100) * this.calculateTotalDeventions()).toFixed(2));
+    this.payroll.professionalFormationDeduction =
+     parseFloat(((this.payroll.professionalFormationPercent / 100) * this.calculateTotalDeventions()).toFixed(2));
+    this.payroll.majorForceExtraHoursDeduction =
+     parseFloat(((this.payroll.majorForceExtraHoursPercent / 100) * this.calculateTotalDeventions()).toFixed(2));
+    this.payroll.otherExtraHoursDeduction =
+     parseFloat(((this.payroll.otherExtraHoursPercent / 100) * this.calculateTotalDeventions()).toFixed(2));
 
     this.payroll.totalAportations = this.getCommonContingenciesDeduction() + this.payroll.unemployementDeduction +
     this.payroll.professionalFormationDeduction + this.payroll.majorForceExtraHoursDeduction + this.payroll.otherExtraHoursDeduction;
 
-    return this.payroll.totalAportations;
+    return parseFloat(this.payroll.totalAportations.toFixed(2));
   }
 
 
@@ -149,37 +167,21 @@ public getTotalComplements(): number{
   }
 
 
-  getTotalIndemnizations(): number{
-    return (this.payroll.indemnization1Import +  this.payroll.indemnization2Import +
-      this.payroll.indemnization3Import);
-  }
-
-
-
-
-  calculateTotalNonSalarialPerceptions(): number {
-   return  this.payroll.totalDeventions + this.getTotalIndemnizations() + this.payroll.SSprestationsOrIndemnizations +
-    this.payroll.otherIndemnizations + this.payroll.otherSalaryPerceptions;
-
-  }
-
 
   public getNetSalary(): number{
-
-
     return  this.calculateTotalDeventions() - this.getTotalDeductions();
-
   }
 
   public getIrpfPercent(): number{
     return this.payroll.irpfPercent;
   }
 
-  // tslint:disable-next-line: typedef
-  public calculatePayroll(){
+  // sets the payroll object then calls the service add method to further insert it to the database
+  public calculatePayroll(): void{
     this.payroll.companyId = this.company?.id;
     this.payroll.companyName = this.company.name;
     this.payroll.companyAddress = this.company.address;
+    this.payroll.totalAportations = parseFloat(this.getTotalAportations().toFixed(2));
     this.payroll.bruteSalary = this.calculateTotalDeventions();
     this.payroll.netSalary = parseFloat(this.getNetSalary().toFixed(2));
     this.payroll.baseSalary = this.employee.baseSalary;
@@ -201,18 +203,26 @@ public getTotalComplements(): number{
     this.payrollService.addPayroll(this.payroll).subscribe(response => this.showReportButtons(response) );
   }
 
-  exportToHtml(){
+  /**
+   * Export functions call the service function and when a response is given
+   * it alerts with the response body which should be the reports path given
+   */
+  exportToHtml(): any{
     return this.payrollService.exportHtml(this.generatedReportId).subscribe(response => alert(JSON.stringify(response)) );
   }
 
-  exportToPdf(){
+  exportToPdf(): any{
     return this.payrollService.exportPdf(this.generatedReportId).subscribe(response => alert(JSON.stringify(response)));
   }
 
+  exportToCsv(): any{
+    return this.payrollService.exportCsv(this.generatedReportId).subscribe(response => alert(JSON.stringify(response)));
+  }
 
-  showReportButtons(response: number){
+  // given the generated payroll id, the report buttons are shown
+  showReportButtons(response: number): any{
     this.generatedReportId = response;
     this.added = true;
-
   }
+
 }

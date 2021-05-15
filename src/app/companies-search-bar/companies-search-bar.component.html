@@ -1,5 +1,5 @@
 
-<!--Filters from employees-->
+<!--Filters from employees given on the component side-->
 
 <div class=" wrapper d-flex">
 
@@ -11,7 +11,7 @@
 
   </div>
 
-
+<!--Config for the autocomplete-->
   <div class="autocomplete">
 
     <ng-autocomplete
@@ -19,18 +19,13 @@
       [searchKeyword]=keyword
       (selected)='selectEvent($event)'
       [itemTemplate]="itemTemplate"
-
-
       placeholder="Busca una empresa..."
     >
     </ng-autocomplete>
 
+
     <ng-template #itemTemplate let-item>
       <a [innerHTML]="item.name"></a>
-      </ng-template>
-
-      <ng-template #notFoundTemplate let-notFound>
-      <div [innerHTML]="notFound"></div>
       </ng-template>
   </div>
   </div>
