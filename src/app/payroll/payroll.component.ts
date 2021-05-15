@@ -17,9 +17,15 @@ export class PayrollComponent implements OnInit {
 
 
 
+
   public keyword = 'name';
   public data: Observable<Employee[]>;
   public keywords = ['name', 'dni' , 'id'];
+  public generatedReportId: number;
+  public added = false;
+  public dateAdded = false;
+  public successMessage = '';
+  public exportPath: string;
 
 
 
@@ -53,6 +59,7 @@ export class PayrollComponent implements OnInit {
 
 
   setDateDiff(): void{
+    this.dateAdded = true;
     const date1 = new Date(this.payroll.startDate);
     const  date2 = new Date(this.payroll.endDate);
     const time = date2.getTime() - date1.getTime();
@@ -100,10 +107,10 @@ public getTotalComplements(): number{
 
   public getTotalAportations(): number{
 
-    this.payroll.unemployementDeduction = (this.payroll.unemployementPercent / 100) * this.calculateTotalDeventions();
-    this.payroll.professionalFormationDeduction = (this.payroll.professionalFormationPercent / 100) * this.calculateTotalDeventions();
-    this.payroll.majorForceExtraHoursDeduction = (this.payroll.majorForceExtraHoursPercent / 100) * this.calculateTotalDeventions();
-    this.payroll.otherExtraHoursDeduction = (this.payroll.otherExtraHoursPercent / 100) * this.calculateTotalDeventions();
+    this.payroll.unemployementDeduction = parseFloat(((this.payroll.unemployementPercent / 100) * this.calculateTotalDeventions()).toFixed(2));
+    this.payroll.professionalFormationDeduction = parseFloat(((this.payroll.professionalFormationPercent / 100) * this.calculateTotalDeventions()).toFixed(2));
+    this.payroll.majorForceExtraHoursDeduction = parseFloat(((this.payroll.majorForceExtraHoursPercent / 100) * this.calculateTotalDeventions()).toFixed(2));
+    this.payroll.otherExtraHoursDeduction = parseFloat(((this.payroll.otherExtraHoursPercent / 100) * this.calculateTotalDeventions()).toFixed(2));
 
     this.payroll.totalAportations = this.getCommonContingenciesDeduction() + this.payroll.unemployementDeduction +
     this.payroll.professionalFormationDeduction + this.payroll.majorForceExtraHoursDeduction + this.payroll.otherExtraHoursDeduction;
@@ -117,7 +124,7 @@ public getTotalComplements(): number{
   }
 
   public getUnemployementDeduction(): number{
-    return this.payroll.unemployementPercent/100 * this.calculateTotalDeventions();
+    return this.payroll.unemployementPercent / 100 * this.calculateTotalDeventions();
   }
   public getProfessionalFormationDeduction(): number{
     return (this.payroll.professionalFormationPercent / 100) * this.calculateTotalDeventions();
@@ -174,9 +181,11 @@ public getTotalComplements(): number{
     this.payroll.companyName = this.company.name;
     this.payroll.companyAddress = this.company.address;
     this.payroll.bruteSalary = this.calculateTotalDeventions();
-    this.payroll.netSalary = this.getNetSalary();
+    this.payroll.netSalary = parseFloat(this.getNetSalary().toFixed(2));
     this.payroll.baseSalary = this.employee.baseSalary;
-
+    this.payroll.totalDeductions = parseFloat(this.getTotalDeductions().toFixed(2));
+    this.payroll.commonContingenciesDeduction = parseFloat(this.getCommonContingenciesDeduction().toFixed(2));
+    this.payroll.irpfDeduction = parseFloat(this.getIrpfDeduction().toFixed(2));
     this.payroll.city = this.company.city;
     this.payroll.ccc = this.company.ccc;
     this.payroll.cif = this.company.cif;
@@ -189,10 +198,21 @@ public getTotalComplements(): number{
     this.payroll.jobPosition = this.employee.jobPosition;
     this.payroll.retributiveGroup =  this.employee.retributiveGroup;
     this.payroll.establishmentCategory = this.employee.establishmentCategory,
+    this.payrollService.addPayroll(this.payroll).subscribe(response => this.showReportButtons(response) );
+  }
+
+  exportToHtml(){
+    return this.payrollService.exportHtml(this.generatedReportId).subscribe(response => alert(JSON.stringify(response)) );
+  }
+
+  exportToPdf(){
+    return this.payrollService.exportPdf(this.generatedReportId).subscribe(response => alert(JSON.stringify(response)));
+  }
 
 
-    typeof(this.payroll)
-    this.payrollService.addPayroll(this.payroll);
+  showReportButtons(response: number){
+    this.generatedReportId = response;
+    this.added = true;
 
   }
 }

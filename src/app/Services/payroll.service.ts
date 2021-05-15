@@ -18,14 +18,17 @@ export class PayrollService {
 
   }
 // gets companies from back end service
-public exportHtml(exportId: number): void{
-  window.open((`${this.apiServerUrl}/html/${exportId}`));
+public exportHtml(exportId: number): Observable<any>{
+  return this.http.get(`${this.apiServerUrl}/report/html/${exportId}`,{responseType: 'text'});
  }
 
 
+ public exportPdf(exportId: number): Observable<any>{
+  return this.http.get(`${this.apiServerUrl}/report/pdf/${exportId}`,{responseType: 'text'});
+ }
+
  public addPayroll(payroll: Payroll): Observable<any>{
 
-  console.log("ey")
 
   return this.http.post(`${this.apiServerUrl}/payrolls/add`, JSON.stringify(payroll));
  }

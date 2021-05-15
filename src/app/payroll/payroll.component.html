@@ -285,7 +285,15 @@
           <span class="salary1"> Salario bruto:  {{calculateTotalDeventions().toFixed(2)}} </span>
           <span class="salary2">Salario neto:   {{getNetSalary().toFixed(2)}}   </span>
         </div>
-         <button  (click)="calculatePayroll()"></button>
+
+         <button type=button class="btn btn-primary" *ngIf="dateAdded" (click)="calculatePayroll()"> Calcular</button>
+         <div *ngIf="added"class="exports">
+           Exportar como:
+           <button  *ngIf="added" type=button class="btn btn-primary" (click)="exportToHtml()"> HTML</button>
+           <button *ngIf="added" type=button class="btn btn-primary" (click)="exportToPdf()"> PDF</button>
+
+         </div>
+
     </div>
 
 

@@ -76,7 +76,7 @@ label {
 
   display: flex;
   margin-top: 2rem;
-  width: 100%;
+  width: 60%;
 
 }
 
@@ -270,6 +270,7 @@ input {
 .salaries{
   margin-top: .5rem;
   display: flex;
+  margin-bottom: 2rem;
 
 }
 .salary1{
@@ -289,7 +290,11 @@ input {
   max-width: 20%;
   margin-left:auto;
 }
-button{
-  height: 3vh;
-  width: 3vw;
+
+.exports{
+  margin-top: auto;
+  float:right;
+  font-size: 1rem;
+  font-weight: 700;
+  display: inline;
 }
